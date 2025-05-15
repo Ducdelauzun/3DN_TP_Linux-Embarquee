@@ -1,0 +1,53 @@
+make -C /lib/modules/4.19.0-6-amd64/build M=/home/ensea/src/TP/module/v3 modules
+make[1]: Entering directory '/usr/src/linux-headers-4.19.0-6-amd64'
+  CC [M]  /home/ensea/src/TP/module/v3/hello_advanced.o
+/home/ensea/src/TP/module/v3/hello_advanced.c:47:22: error: variable ‘proc_fops’ has initializer but incomplete type
+  static const struct proc_ops proc_fops = {
+                      ^~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:48:7: error: ‘const struct proc_ops’ has no member named ‘proc_open’
+      .proc_open    = proc_open,
+       ^~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:48:22: warning: excess elements in struct initializer
+      .proc_open    = proc_open,
+                      ^~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:48:22: note: (near initialization for ‘proc_fops’)
+/home/ensea/src/TP/module/v3/hello_advanced.c:49:7: error: ‘const struct proc_ops’ has no member named ‘proc_read’
+      .proc_read    = seq_read,
+       ^~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:49:22: warning: excess elements in struct initializer
+      .proc_read    = seq_read,
+                      ^~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:49:22: note: (near initialization for ‘proc_fops’)
+/home/ensea/src/TP/module/v3/hello_advanced.c:50:7: error: ‘const struct proc_ops’ has no member named ‘proc_lseek’
+      .proc_lseek   = seq_lseek,
+       ^~~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:50:22: warning: excess elements in struct initializer
+      .proc_lseek   = seq_lseek,
+                      ^~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:50:22: note: (near initialization for ‘proc_fops’)
+/home/ensea/src/TP/module/v3/hello_advanced.c:51:7: error: ‘const struct proc_ops’ has no member named ‘proc_release’
+      .proc_release = single_release
+       ^~~~~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:51:22: warning: excess elements in struct initializer
+      .proc_release = single_release
+                      ^~~~~~~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c:51:22: note: (near initialization for ‘proc_fops’)
+/home/ensea/src/TP/module/v3/hello_advanced.c: In function ‘hello_init’:
+/home/ensea/src/TP/module/v3/hello_advanced.c:56:38: error: passing argument 4 of ‘proc_create’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+      proc_create(PROC_NAME, 0, NULL, &proc_fops);
+                                      ^~~~~~~~~~
+In file included from /home/ensea/src/TP/module/v3/hello_advanced.c:11:
+/usr/src/linux-headers-4.19.0-6-common/include/linux/proc_fs.h:49:24: note: expected ‘const struct file_operations *’ but argument is of type ‘const struct proc_ops *’
+ struct proc_dir_entry *proc_create(const char *name, umode_t mode, struct proc_dir_entry *parent, const struct file_operations *proc_fops);
+                        ^~~~~~~~~~~
+/home/ensea/src/TP/module/v3/hello_advanced.c: At top level:
+/home/ensea/src/TP/module/v3/hello_advanced.c:47:31: error: storage size of ‘proc_fops’ isn’t known
+  static const struct proc_ops proc_fops = {
+                               ^~~~~~~~~
+cc1: some warnings being treated as errors
+make[4]: *** [/usr/src/linux-headers-4.19.0-6-common/scripts/Makefile.build:315: /home/ensea/src/TP/module/v3/hello_advanced.o] Error 1
+make[3]: *** [/usr/src/linux-headers-4.19.0-6-common/Makefile:1534: _module_/home/ensea/src/TP/module/v3] Error 2
+make[2]: *** [Makefile:146: sub-make] Error 2
+make[1]: *** [Makefile:8: all] Error 2
+make[1]: Leaving directory '/usr/src/linux-headers-4.19.0-6-amd64'
+make: *** [Makefile:4: all] Error 2

@@ -1,0 +1,1 @@
+cmd_/home/ensea/src/TP/module/hello_module.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T /usr/src/linux-headers-4.19.0-6-common/scripts/module-common.lds  --build-id  -o /home/ensea/src/TP/module/hello_module.ko /home/ensea/src/TP/module/hello_module.o /home/ensea/src/TP/module/hello_module.mod.o ;  true
