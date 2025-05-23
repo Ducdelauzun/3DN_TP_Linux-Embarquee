@@ -1,0 +1,1 @@
+cmd_/home/ensea/src/TP/module_final/chenillard.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/ensea/src/TP/module_final/chenillard.ko /home/ensea/src/TP/module_final/chenillard.o /home/ensea/src/TP/module_final/chenillard.mod.o

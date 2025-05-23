@@ -1,0 +1,1 @@
+cmd_/home/ensea/src/TP/module_cross/v2/hello_param.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/ensea/src/TP/module_cross/v2/hello_param.ko /home/ensea/src/TP/module_cross/v2/hello_param.o /home/ensea/src/TP/module_cross/v2/hello_param.mod.o

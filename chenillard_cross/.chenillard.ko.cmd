@@ -1,0 +1,1 @@
+cmd_/home/ensea/src/TP/chenillard_cross/chenillard.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/ensea/src/TP/chenillard_cross/chenillard.ko /home/ensea/src/TP/chenillard_cross/chenillard.o /home/ensea/src/TP/chenillard_cross/chenillard.mod.o

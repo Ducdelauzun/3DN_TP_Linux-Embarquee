@@ -1,0 +1,1 @@
+cmd_/home/ensea/src/TP/module_cross/v3/hello_advanced.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/ensea/src/TP/module_cross/v3/hello_advanced.ko /home/ensea/src/TP/module_cross/v3/hello_advanced.o /home/ensea/src/TP/module_cross/v3/hello_advanced.mod.o
