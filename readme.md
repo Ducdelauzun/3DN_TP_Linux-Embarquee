@@ -1,6 +1,6 @@
-# 📘 TP Linux Embarqué – Réponses jusqu'à la partie 3
+# TP Linux Embarqué – Réponses jusqu'à la partie 3
 
-## ✅ 1.4.4 Accès au matériel
+## 1.4.4 Accès au matériel
 
 Les LEDs sont accessibles via des fichiers dans `/sys/class/leds/`. Par exemple :
 
@@ -12,7 +12,7 @@ echo 1 > /sys/class/leds/fpga_led1/brightness
 
 ---
 
-## ✅ 1.4.5 Chenillard
+## 1.4.5 Chenillard
 
 Au lieu de passer par `echo`, un programme en C peut ouvrir les fichiers de chaque LED et y écrire `"1"` ou `"0"` pour les allumer/éteindre.
 
@@ -23,13 +23,13 @@ Idée générale :
 
 ---
 
-## ✅ 2.1 Accès aux registres
+## 2.1 Accès aux registres
 
 > **Adresse des LEDs :** `0xFF203000`
 
 Pour accéder à un registre depuis l’espace utilisateur, on doit utiliser `mmap()` pour convertir l’adresse physique en adresse virtuelle, car la mémoire est virtualisée.
 
-### ❗ Problèmes et limites de cette méthode :
+### Problèmes et limites de cette méthode :
 - Accès non sécurisé aux registres (aucune isolation)
 - Risques d’erreurs critiques si mauvaise adresse
 - Incompatible avec les protections classiques du noyau
@@ -37,23 +37,23 @@ Pour accéder à un registre depuis l’espace utilisateur, on doit utiliser `mm
 
 ---
 
-## ✅ 2.3.2 – Rôle des commandes `export`
+## 2.3.2 – Rôle des commandes `export`
 
 ```bash
 export CROSS_COMPILE=/usr/bin/arm-linux-gnueabihf-
 export ARCH=arm
 ```
 
-### 🔹 `CROSS_COMPILE`
+### `CROSS_COMPILE`
 Indique le **préfixe du compilateur croisé** à utiliser, par exemple :
 `arm-linux-gnueabihf-gcc` = `/usr/bin/arm-linux-gnueabihf-` + `gcc`
 
-### 🔹 `ARCH`
+### `ARCH`
 Spécifie l'architecture cible (ici `arm`) pour que le noyau sache générer des modules pour l’architecture correcte.
 
 ---
 
-## ✅ Pourquoi le chemin finit par un `-` ?
+## Pourquoi le chemin finit par un `-` ?
 
 Parce que ce préfixe sera concaténé automatiquement avec les outils nécessaires (`gcc`, `as`, `ld`, etc.). C’est une **convention de nommage** des toolchains de cross-compilation.
 
@@ -61,7 +61,7 @@ Parce que ce préfixe sera concaténé automatiquement avec les outils nécessai
 
 ---
 
-## ✅ 2.3.4 Chenillard (module noyau)
+## 2.3.4 Chenillard (module noyau)
 
 Le module demandé doit :
 
@@ -69,16 +69,16 @@ Le module demandé doit :
 - Offrir un `fichier /proc/ensea/chenille` pour modifier le **pattern**
 - Accepter un **paramètre au chargement** (`insmod chenillard.ko vitesse=100`)
 
-💡 À ce stade, **les LEDs ne sont pas encore pilotées**, on vérifie les logs avec `dmesg`.
+ À ce stade, **les LEDs ne sont pas encore pilotées**, on vérifie les logs avec `dmesg`.
 
 ---
 
-## ✅ 3 Device Tree
+## 3 Device Tree
 
-### 🎯 Objectif :
+### Objectif :
 Accéder aux LED directement, ce qui nécessite **d’éviter les pilotes Altera** déjà présents.
 
-### 🔧 Solution retenue :
+### Solution retenue :
 Modifier le fichier `soc_system.dts` :
 ```dts
 ledr: ensea {
@@ -92,7 +92,7 @@ ledr: ensea {
 
 ---
 
-## ✅ 3.1 Module via `/dev`
+## 3.1 Module via `/dev`
 
 ### Fonctions importantes du module :
 
