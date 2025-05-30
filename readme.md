@@ -16,11 +16,6 @@ echo 1 > /sys/class/leds/fpga_led1/brightness
 
 Au lieu de passer par `echo`, un programme en C peut ouvrir les fichiers de chaque LED et y écrire `"1"` ou `"0"` pour les allumer/éteindre.
 
-Idée générale :
-- Créer un tableau de chemins `/sys/class/leds/fpga_ledX/brightness`
-- Allumer une LED à la fois et faire défiler vers la droite, puis vers la gauche
-- Utiliser `usleep()` pour la temporisation
-
 ---
 
 ## 2.1 Accès aux registres
@@ -61,18 +56,6 @@ Parce que ce préfixe sera concaténé automatiquement avec les outils nécessai
 
 ---
 
-## 2.3.4 Chenillard (module noyau)
-
-Le module demandé doit :
-
-- Utiliser un `timer` du noyau
-- Offrir un `fichier /proc/ensea/chenille` pour modifier le **pattern**
-- Accepter un **paramètre au chargement** (`insmod chenillard.ko vitesse=100`)
-
- À ce stade, **les LEDs ne sont pas encore pilotées**, on vérifie les logs avec `dmesg`.
-
----
-
 ## 3 Device Tree
 
 ### Objectif :
@@ -88,7 +71,7 @@ ledr: ensea {
 };
 ```
 
-> Cela **supprime l’usage du driver par défaut** et permet à ton module d’accéder aux registres directement.
+> Cela **supprime l’usage du driver par défaut** et permet au module d’accéder aux registres directement.
 
 ---
 
